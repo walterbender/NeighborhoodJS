@@ -1,0 +1,98 @@
+body {
+    background-color: #99CCFF;
+}
+
+#main-toolbar #activity-button {
+  background-image: url(../activity/activity-icon.svg);
+}
+
+#main-toolbar #fast-button {
+  background-image: url(../icons/fast-button.svg);
+}
+
+#main-toolbar #slow-button {
+  background-image: url(../icons/slow-button.svg);
+}
+
+#main-toolbar #block-button {
+  background-image: url(../icons/block-button.svg);
+}
+
+#main-toolbar #clear-button {
+  background-image: url(../icons/clear-button.svg);
+}
+
+#main-toolbar #cartesian-button {
+  background-image: url(../icons/Cartesian-button.svg);
+}
+
+#main-toolbar #polar-button {
+  background-image: url(../icons/polar-button.svg);
+}
+
+#main-toolbar #open-button {
+  background-image: url(../icons/open-button.svg);
+}
+
+#main-toolbar #save-button {
+  background-image: url(../icons/save-button.svg);
+}
+
+input.file {
+    visibility: hidden;
+}
+
+button.sensors {
+    background-color: #ff0066;
+    color: #ffffff;
+}
+
+button.extras {
+    background-color: #ff0066;
+    color: #ffffff;
+}
+
+button.number {
+    background-color: #ff00ff;
+    color: #000000;
+}
+
+button.blocks {
+    background-color: #ffc000;
+    color: #000000;
+}
+
+button.turtle {
+    background-color: #00b700;
+    color: #000000;
+}
+
+button.flow {
+    background-color: #fd6600;
+    color: #000000;
+}
+
+button.pen {
+    background-color: #00c0e7;
+    color: #000000;
+}
+
+textarea.text {
+   background-color: #ffc000;
+   text-align: center;
+   font-size: 150% !important;
+   font-weight: bold !important;
+   resize: none !important;
+   padding: 0 !important;
+   border: 0 !important;
+}
+
+textarea.number {
+   background-color: #ff00ff;
+   text-align: center;
+   font-size: 150% !important;
+   font-weight: bold !important;
+   resize: none !important;
+   padding: 0 !important;
+   border: 0 !important;
+}
