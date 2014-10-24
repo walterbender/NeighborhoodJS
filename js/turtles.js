@@ -64,6 +64,7 @@ function Turtles(canvas, stage, refreshCanvas) {
 	myTurtle.bitmap.regY = 27 | 0;
 	myTurtle.bitmap.name = 'bmp_turtle';
 	myTurtle.bitmap.cursor = 'pointer';
+	myTurtle.bitmap.rotation = Math.floor(Math.random() * 360);
 	var hitArea = new createjs.Shape();
 	hitArea.graphics.beginFill('#FFF').drawEllipse(-27, -27, 55, 55);
 	hitArea.x = 0;
