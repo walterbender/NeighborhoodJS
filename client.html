@@ -1,0 +1,28 @@
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+
+    var lobby = io.connect('http://localhost:3000/lobby');
+
+    lobby.on("connected", function(users){
+        lobby.emit("publish", {'activity': 'turtleblocks', 'room': '3ac3d8c0-5bd6-11e4-84fd-0002a5d5c51b'})
+        lobby.emit("update", {"name": "tch"});
+        console.log(users);
+    });
+    lobby.on("joined", function(user){
+        console.log(user);
+    });
+    lobby.on("updated", function(user){
+        console.log(user);
+    });
+    lobby.on("left", function(id){
+        console.log(id);
+    });
+    lobby.on("published", function(id, service){
+        console.log(service);
+    });
+    lobby.on("forgot", function(id, service){
+        console.log(service);
+    });
+
+
+</script>
