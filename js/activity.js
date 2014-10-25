@@ -93,7 +93,8 @@ define(function (require) {
 		// lobby.emit("publish", {'activity': 'turtleblocks', 'room': '3ac3d8c0-5bd6-11e4-84fd-0002a5d5c51b'})
 		console.log('connected');
 		for (user in users) {
-		    addTurtle[users[user].id, users[user].name];
+		    console.log(users[user].name);
+		    addTurtle(users[user].id, users[user].name);
 		}
 		lobby.emit("update", {"name": "tch"});
 		console.log(users);
