@@ -13,6 +13,7 @@ define(function (require) {
     var activity = require('sugar-web/activity/activity');
     var icon = require('sugar-web/graphics/icon');
     require('easel');
+    var io = require('socket.io');
     require('activity/turtles');
 
     // Manipulate the DOM only when it is ready.
@@ -32,6 +33,8 @@ define(function (require) {
         var canvas = docById('myCanvas');
 	var stage;
 	var turtles;
+	var lobby;
+	var users = {};
 
 	// default values
 	var defaultBackgroundColor = [70, 80, 20];
@@ -84,10 +87,33 @@ define(function (require) {
 
 	function initNeighborhood() {
 	    // this comes from somewhere
-	    var names = ['tincho', 'gonzalo', 'rgs', 'rms', 'walter', 'patty'];
-	    for (var i in names) {
-		addTurtle(names[i]);
-	    }
+	    lobby = io.connect('http://172.20.17.225:3000/lobby');
+
+	    lobby.on("connected", function(users){
+		// lobby.emit("publish", {'activity': 'turtleblocks', 'room': '3ac3d8c0-5bd6-11e4-84fd-0002a5d5c51b'})
+		console.log('connected');
+		lobby.emit("update", {"name": "tch"});
+		console.log(users);
+	    });
+	    lobby.on("joined", function(user){
+		console.log(user);
+		users[user[id]] = user;
+		addTurtle(user.name);
+	    });
+	    lobby.on("updated", function(user){
+		console.log(user);
+	    });
+	    lobby.on("left", function(id){
+		removeTurtle(user[id]);
+		console.log(user[id]);
+	    });
+	    lobby.on("published", function(id, service){
+		console.log(service);
+	    });
+	    lobby.on("forgot", function(id, service){
+		console.log(service);
+	    });
+	    
 	}
 
 	function addTurtle(name) {
