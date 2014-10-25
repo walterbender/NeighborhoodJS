@@ -19,7 +19,8 @@ var defaultStroke = 5;
 var turtlePath = 'images/turtle.svg';
 var turtleBasePath = 'images/';
 
-function Turtle (name, turtles) {
+function Turtle (id, name, turtles) {
+    this.id = id;
     this.name = name;
     this.turtles = turtles;
 
@@ -35,15 +36,15 @@ function Turtles(canvas, stage, refreshCanvas) {
     this.refreshCanvas = refreshCanvas;
     
     // The list of all of our turtles, one for each start block.
-    this.turtleList = [];
+    this.turtleList = {};
 
-    this.add = function(name) {
+    this.add = function(id, name) {
 	// Add a new turtle for each start block
 	console.log('adding a new turtle ' + name);
-	var i = this.turtleList.length;
+	var i = Math.floor(Math.random() * 10);
 	var turtleName = i.toString();
-	var myTurtle = new Turtle(name, this);
-	this.turtleList.push(myTurtle);
+	var myTurtle = new Turtle(id, name, this);
+	this.turtleList[id] = myTurtle;
 
 	// Each turtle needs its own canvas.
         myTurtle.drawingCanvas = new createjs.Shape();

@@ -89,6 +89,9 @@ define(function (require) {
 	    // this comes from somewhere
 	    lobby = io.connect('http://172.20.17.225:3000/lobby');
 
+	    addTurtle('xyzzy', 'walter');
+	    removeTurtle('xyzzy');
+	    addTurtle('xyzzy', 'walter');
 	    lobby.on("connected", function(users){
 		// lobby.emit("publish", {'activity': 'turtleblocks', 'room': '3ac3d8c0-5bd6-11e4-84fd-0002a5d5c51b'})
 		console.log('connected');
@@ -98,7 +101,7 @@ define(function (require) {
 	    lobby.on("joined", function(user){
 		console.log(user);
 		users[user[id]] = user;
-		addTurtle(user.name);
+		addTurtle(user[id], user[name]);
 	    });
 	    lobby.on("updated", function(user){
 		console.log(user);
@@ -116,21 +119,25 @@ define(function (require) {
 	    
 	}
 
-	function addTurtle(name) {
-	    if (self.dict[name]) {
-		self.dict[name].container.visible = true;
+	function addTurtle(id, name) {
+	    if (self.dict[id]) {
+		console.log('restoring ' + self.dict[id]['turtle'].name);
+		self.dict[id]['turtle'].container.visible = true;
 	    } else {
-		turtles.add(name);
-		self.dict[name] = last(turtles.turtleList);
+		turtles.add(id, name);
+		self.dict[id] = {}
+		self.dict[id]['turtle'] = turtles.turtleList[id];
+		console.log('creating ' + self.dict[id]['turtle'].name);
 	    }
-	    self.dict[name].container.x = Math.floor(Math.random() * (canvas.width));
-	    self.dict[name].container.y = Math.floor(Math.random() * (canvas.height));
+	    self.dict[id]['turtle'].container.x = Math.floor(Math.random() * (canvas.width));
+	    self.dict[id]['turtle'].container.y = Math.floor(Math.random() * (canvas.height));
 	    update = true;
 	}
 
-	function removeTurtle(name) {
-	    if (self.dict[name]) {
-		self.dict[name].container.visible = false;
+	function removeTurtle(id) {
+	    if (self.dict[id]) {
+		console.log('hiding ' + self.dict[id]['turtle'].name);
+		self.dict[id]['turtle'].container.visible = false;
 	    }
 	    update = true;
 	}
