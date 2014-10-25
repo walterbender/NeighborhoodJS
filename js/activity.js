@@ -87,11 +87,14 @@ define(function (require) {
 
 	function initNeighborhood() {
 	    // this comes from somewhere
-	    lobby = io.connect('http://172.20.17.225:3000/lobby');
+	    lobby = io.connect('http://localhost:3000/lobby');
 
 	    lobby.on("connected", function(users){
 		// lobby.emit("publish", {'activity': 'turtleblocks', 'room': '3ac3d8c0-5bd6-11e4-84fd-0002a5d5c51b'})
 		console.log('connected');
+		for (user in users) {
+		    addTurtle[users[user].id, users[user].name];
+		}
 		lobby.emit("update", {"name": "tch"});
 		console.log(users);
 	    });
